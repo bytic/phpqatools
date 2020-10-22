@@ -20,20 +20,23 @@
     "php": ">=5.6,<8.0-dev",
 
     "bytic/qaconfig": "^1.0",
-    "bytic/codeception": "^1.0",
-    "phpunit/phpunit": "^5.7|^6.5",
+    "bytic/codeception": "^1.0|^4.0",
+    "phpunit/phpunit": "^7.0|^8.0|^9.0",
 
     "pdepend/pdepend": "^2.5",
     "phpmd/phpmd": "^2.6",
 
     "squizlabs/php_codesniffer": "^3.2",
     "friendsofphp/php-cs-fixer": "^2.8",
+    "seld/jsonlint": "^1.6",
+
+    "phpstan/phpstan": "^0.11|^0.12",
+    "vimeo/psalm": "^3.6",
 
     "phploc/phploc": "^4.0",
     "phpmetrics/phpmetrics": "^2.3",
     "phpro/grumphp": ">=0.11.0,<1.0.0,!=0.11.4",
     "sebastian/phpcpd": "^3.0",
-    "seld/jsonlint": "^1.6",
 
     "sensiolabs/security-checker": "^4.1",
     "sllh/composer-versions-check": "^2.0",
@@ -43,5 +46,32 @@
   },
   "config": {
     "sort-packages": true
+  },
+  "scripts": {
+    "test": [
+      "phpunit"
+    ],
+    "tests": [
+      "@cs",
+      "@qa",
+      "@test"
+    ],
+    "qa": [
+      "phpmd src text ./phpmd.xml",
+      "phpstan analyse --no-progress",
+      "psalm --no-progress"
+    ],
+    "coverage": [
+      "php -dzend_extension=xdebug.so ./vendor/bin/phpunit --coverage-text --coverage-html=build/coverage"
+    ],
+    "cs": [
+      "phpcs"
+    ],
+    "cs-fix": [
+      "phpcbf"
+    ],
+    "metrics": [
+      "phpmetrics --report-html=build/metrics --exclude=Exception src"
+    ]
   }
 }
