@@ -3,6 +3,9 @@ declare(strict_types=1);
 
 namespace Bytic\Phpqa\Composer\Command;
 
+use Symfony\Component\Console\Input\InputInterface;
+use Symfony\Component\Console\Output\OutputInterface;
+
 /**
  *
  */
@@ -18,4 +21,10 @@ abstract class NamespaceCommand extends BaseCommand
             throw new \RuntimeException('COMMAND_NAMESPACE must be defined');
         }
     }
+
+    protected function execute(InputInterface $input, OutputInterface $output)
+    {
+        $output->writeln('Executing ' . $this->getName());
+    }
+
 }

@@ -1,7 +1,7 @@
 {
   "name": "bytic/phpqatools",
   "description": "Meta package for installing all PHP QA tools you'll ever need",
-  "type": "metapackage",
+  "type": "composer-plugin",
   "keywords": [
     "php",
     "qa", "quality", "code quality",
