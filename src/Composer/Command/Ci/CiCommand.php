@@ -12,6 +12,6 @@ class CiCommand extends NamespaceCommand
 {
     public function getBaseName(): string
     {
-        return 'fix';
+        return 'ci';
     }
 }

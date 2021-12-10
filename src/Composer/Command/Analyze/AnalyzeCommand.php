@@ -12,7 +12,7 @@ class AnalyzeCommand extends NamespaceCommand
 {
     public function getBaseName(): string
     {
-        return 'analyze:all';
+        return 'analyze';
     }
 
     /**
@@ -22,6 +22,6 @@ class AnalyzeCommand extends NamespaceCommand
      */
     public function getAliases(): array
     {
-        return ['analyze'];
+        return ['analyze:all'];
     }
 }
