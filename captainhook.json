@@ -1,6 +1,6 @@
 {
     "commit-msg": {
-        "enabled": true,
+        "enabled": false,
         "actions": []
     },
     "pre-push": {
@@ -8,14 +8,8 @@
         "actions": []
     },
     "pre-commit": {
-        "enabled": true,
-        "actions": [
-            {
-                "action": "\\CaptainHook\\App\\Hook\\PHP\\Action\\Linting",
-                "options": [],
-                "conditions": []
-            }
-        ]
+        "enabled": false,
+        "actions": []
     },
     "prepare-commit-msg": {
         "enabled": false,
