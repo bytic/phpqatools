@@ -24,7 +24,7 @@ class NormalizeCommand extends AbstractCommand
 
     protected function doExecute(InputInterface $input, OutputInterface $output): int
     {
-        if (false === $this->inputHasFixOption($input)) {
+        if (false === $this->isRunFromNamespace($input, NamespaceCommand::FIX)) {
             $input->setOption('dry-run', null);
         }
         return parent::doExecute($input, $output);
