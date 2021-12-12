@@ -14,8 +14,8 @@ abstract class NamespaceCommand extends BaseCommand
 {
     public const ANALYZE = 'analyze';
     public const CI = 'ci';
-    public const FIX = 'FIX';
-    public const TEST = 'TEST';
+    public const FIX = 'fix';
+    public const TEST = 'test';
 
     public function getBaseName(): string
     {
