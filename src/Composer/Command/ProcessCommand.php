@@ -47,7 +47,7 @@ abstract class ProcessCommand extends BaseCommand
             ),
         ]);
 
-        return $this->doExecuteProcess($command, $cwd, $output);
+        return $this->doExecuteProcess($command_line, $cwd, $output);
     }
 
     protected function doExecuteProcess($command_line, $cwd, $output): int
