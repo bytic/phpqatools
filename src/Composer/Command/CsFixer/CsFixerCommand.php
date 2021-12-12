@@ -4,7 +4,8 @@ declare(strict_types=1);
 
 namespace Bytic\Phpqa\Composer\Command\CsFixer;
 
-use Bytic\Phpqa\Composer\Command\Fix\HasFixOption;
+use Bytic\Phpqa\Composer\Command\NamespaceCommand;
+use Bytic\Phpqa\Composer\Command\NamespaceCommands\IsNamespaceChildCommand;
 use Bytic\Phpqa\Composer\Command\ProcessCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -14,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class CsFixerCommand extends ProcessCommand
 {
-    use HasFixOption;
+    use IsNamespaceChildCommand;
 
     public function getBaseName(): string
     {
@@ -25,7 +26,7 @@ class CsFixerCommand extends ProcessCommand
     {
         $args = ['fix'];
 
-        if (false === $this->inputHasFixOption($input)) {
+        if (false === $this->isRunFromNamespace($input, NamespaceCommand::FIX)) {
             $args[] = '-v --dry-run --using-cache no --diff';
         }
 
@@ -40,9 +41,7 @@ class CsFixerCommand extends ProcessCommand
     protected function configure()
     {
         parent::configure();
-        $this->setAliasesWithPrefix([
-            'fix:' . $this->getBaseName(),
-            'ci:' . $this->getBaseName()
-        ]);
+        $this->configureNamespaceCommandOption();
+        $this->setAliasesWithNamespacePrefix([NamespaceCommand::CI, NamespaceCommand::FIX]);
     }
 }

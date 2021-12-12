@@ -36,8 +36,8 @@ abstract class ProcessCommand extends BaseCommand
 
         $command_line = array_shift($command) . ' ';
         $command_line .= implode(' ', $command);
-        $cwd = dirname($composer->getConfig()->get('bin-dir'), 2);
 
+        $cwd = dirname($composer->getConfig()->get('bin-dir'), 2);
         $output->writeln([
             sprintf(
                 '<comment>Executing </comment><info>%s</info>'
@@ -47,6 +47,11 @@ abstract class ProcessCommand extends BaseCommand
             ),
         ]);
 
+        return $this->doExecuteProcess($command, $cwd, $output);
+    }
+
+    protected function doExecuteProcess($command_line, $cwd, $output): int
+    {
         if (method_exists('Symfony\Component\Process\Process', 'fromShellCommandline')) {
             $process = Process::fromShellCommandline($command_line, $cwd);
         } else {

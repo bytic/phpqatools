@@ -50,7 +50,12 @@
   },
   "autoload": {
     "psr-4": {
-      "Bytic\\Phpqa\\Composer\\": "src/Composer"
+      "Bytic\\Phpqa\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Bytic\\Phpqa\\Tests\\": "tests"
     }
   },
   "scripts": {

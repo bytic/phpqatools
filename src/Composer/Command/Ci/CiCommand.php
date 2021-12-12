@@ -10,8 +10,6 @@ use Bytic\Phpqa\Composer\Command\NamespaceCommand;
  */
 class CiCommand extends NamespaceCommand
 {
-    public function getBaseName(): string
-    {
-        return 'ci';
-    }
+    public const NAMESPACE_NAME = self::CI;
+    
 }

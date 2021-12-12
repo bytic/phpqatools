@@ -1,9 +1,11 @@
 <?php
+
 declare(strict_types=1);
 
 namespace Bytic\Phpqa\Composer\Command\Composer;
 
-use Bytic\Phpqa\Composer\Command\Fix\HasFixOption;
+use Bytic\Phpqa\Composer\Command\NamespaceCommand;
+use Bytic\Phpqa\Composer\Command\NamespaceCommands\IsNamespaceChildCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Input\InputOption;
 use Symfony\Component\Console\Output\OutputInterface;
@@ -13,7 +15,7 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 class NormalizeCommand extends AbstractCommand
 {
-    use HasFixOption;
+    use IsNamespaceChildCommand;
 
     public function getBaseName(): string
     {
@@ -33,12 +35,8 @@ class NormalizeCommand extends AbstractCommand
         parent::configure();
 
         $this->addOption('dry-run', '', InputOption::VALUE_NONE);
-        $this->addOptionFix();
-
-        $this->setAliasesWithPrefix([
-            'ci:' . $this->getBaseName(),
-            'fix:' . $this->getBaseName()
-        ]);
+        $this->configureNamespaceCommandOption();
+        $this->setAliasesWithNamespacePrefix([NamespaceCommand::CI, NamespaceCommand::FIX]);
     }
 
     protected function composerCommand(): string

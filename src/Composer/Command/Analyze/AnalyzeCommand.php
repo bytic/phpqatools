@@ -10,10 +10,7 @@ use Bytic\Phpqa\Composer\Command\NamespaceCommand;
  */
 class AnalyzeCommand extends NamespaceCommand
 {
-    public function getBaseName(): string
-    {
-        return 'analyze';
-    }
+    public const NAMESPACE_NAME = self::ANALYZE;
 
     /**
      * Supports the use of `composer analyze`, without the command prefix/namespace

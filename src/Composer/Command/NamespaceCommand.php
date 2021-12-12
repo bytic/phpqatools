@@ -12,6 +12,15 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 abstract class NamespaceCommand extends BaseCommand
 {
+    public const ANALYZE = 'analyze';
+    public const CI = 'ci';
+    public const FIX = 'FIX';
+    public const TEST = 'TEST';
+
+    public function getBaseName(): string
+    {
+        return static::NAMESPACE_NAME;
+    }
 
     /**
      * @inheritdoc

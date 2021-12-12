@@ -10,8 +10,5 @@ use Bytic\Phpqa\Composer\Command\NamespaceCommand;
  */
 class TestCommand extends NamespaceCommand
 {
-    public function getBaseName(): string
-    {
-        return 'test';
-    }
+    public const NAMESPACE_NAME = self::TEST;
 }

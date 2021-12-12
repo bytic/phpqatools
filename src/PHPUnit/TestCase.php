@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Bytic\Phpqa\Composer;
+namespace Bytic\Phpqa\PHPUnit;
 
 use Mockery;
 use Mockery\Adapter\Phpunit\MockeryPHPUnitIntegration;
