@@ -3,7 +3,6 @@ declare(strict_types=1);
 
 namespace Bytic\Phpqa\Composer\Command\NamespaceCommands;
 
-use Bytic\Phpqa\Composer\Command\NamespaceCommand;
 use Symfony\Component\Console\Input\InputInterface;
 
 /**
@@ -50,7 +49,7 @@ trait IsNamespaceChildCommand
     {
         $aliases = [];
         foreach ($namespaces as $namespace) {
-            $aliases[] = $namespace.':'.$this->getName();
+            $aliases[] = $namespace . ':' . $this->getBaseName();
         }
         $this->setAliasesWithPrefix($aliases);
     }

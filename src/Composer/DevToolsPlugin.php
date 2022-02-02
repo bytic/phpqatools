@@ -39,6 +39,8 @@ class DevToolsPlugin implements Capable, PluginInterface
      */
     public function getCapabilities(): array
     {
+        $config = new Configuration(self::$composer, $this->getCommandPrefix(), $this->repoRoot);
+
         return [
             \Composer\Plugin\Capability\CommandProvider::class => CommandProvider::class,
         ];

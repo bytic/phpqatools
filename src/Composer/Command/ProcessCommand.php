@@ -46,8 +46,18 @@ abstract class ProcessCommand extends BaseCommand
                 $cwd
             ),
         ]);
-
+        if (false === $this->doExecuteCheck()) {
+            $output->writeln([
+                '<comment>Tool not detected. Skipping</comment>'
+            ]);
+            return 0;
+        }
         return $this->doExecuteProcess($command_line, $cwd, $output);
+    }
+
+    protected function doExecuteCheck(): bool
+    {
+        return true;
     }
 
     protected function doExecuteProcess($command_line, $cwd, $output): int
