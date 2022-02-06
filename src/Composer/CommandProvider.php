@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 namespace Bytic\Phpqa\Composer;
 
+use Bytic\Phpqa\Tools\PhpStan\Composer\PhpStanCommand;
+use Bytic\Phpqa\Tools\Psalm\Composer\PsalmCommand;
 use Composer\Command\BaseCommand;
 use Composer\Plugin\Capability\CommandProvider as CommandProviderCapability;
 
@@ -26,7 +28,8 @@ class CommandProvider implements CommandProviderCapability
             new Command\Composer\ValidateCommand(),
             new Command\Composer\NormalizeCommand(),
 
-            new Command\Analyze\PsalmCommand(),
+            new PsalmCommand(),
+            new PhpStanCommand(),
 
             new Command\CsFixer\CsFixerCommand(),
         ];
