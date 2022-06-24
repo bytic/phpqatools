@@ -34,6 +34,6 @@ Inspiration
 ----------------
 * https://github.com/jmolivas/phpqa
 * https://github.com/Dealerdirect/php-qa-tools
-  https://github.com/bearsunday/BEAR.QATools
+* https://github.com/bearsunday/BEAR.QATools
 * https://github.com/lovullo/phpqatools
-
+* https://github.com/endroid/quality
