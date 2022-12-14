@@ -31,8 +31,8 @@
     "phpstan/phpstan": "^1.0",
     "phpstan/phpstan-mockery": "^1.0",
     "phpstan/phpstan-phpunit": "^1.2",
-    "psalm/plugin-mockery": "^0.9",
-    "psalm/plugin-phpunit": "^0.16||^0.17",
+    "psalm/plugin-mockery": "^0.9||^1.0",
+    "psalm/plugin-phpunit": "^0.16||^0.17||^0.18",
     "roave/security-advisories": "dev-latest"
   },
   "require-dev": {
