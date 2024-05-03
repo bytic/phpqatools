@@ -20,7 +20,7 @@
     "php": "^7.4 || ^8",
     "composer-plugin-api": "^2",
     "bytic/phpqaconfig": "^1.0",
-    "phpunit/phpunit": "^7.0|^8.0|^9.0",
+    "phpunit/phpunit": "^8.0|^9.0|^10.0",
     "mockery/mockery": "^1.4",
     "pdepend/pdepend": "^2.5",
     "phpmd/phpmd": "^2.6",
