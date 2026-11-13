@@ -12,10 +12,7 @@ class PsalmDetector
     {
         $rootPath = rtrim(dirname($composer->getConfig()->get('vendor-dir')), '/');
 
-        if (file_exists($rootPath . '/psalm.xml')) {
-            return true;
-        }
-
-        return false;
+        return is_file($rootPath . '/psalm.xml')
+            || is_file($rootPath . '/psalm.xml.dist');
     }
 }

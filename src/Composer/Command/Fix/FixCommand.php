@@ -6,8 +6,6 @@ namespace Bytic\Phpqa\Composer\Command\Fix;
 
 use Bytic\Phpqa\Composer\Command\NamespaceCommand;
 use Bytic\Phpqa\Composer\Command\NamespaceCommands\IsNamespaceChildCommand;
-use Symfony\Component\Console\Input\InputInterface;
-use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  *
@@ -18,12 +16,7 @@ class FixCommand extends NamespaceCommand
 
     public const NAMESPACE_NAME = self::FIX;
 
-    protected function doExecute(InputInterface $input, OutputInterface $output): int
-    {
-        $this->populateInputWithNamespaceCommand($input);
-        return parent::doExecute($input, $output);
-    }
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this->configureNamespaceCommandOption();

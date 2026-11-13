@@ -12,10 +12,7 @@ class PhpStanDetector
     {
         $rootPath = rtrim(dirname($composer->getConfig()->get('vendor-dir')), '/');
 
-        if (file_exists($rootPath . '/psalm.xml')) {
-            return true;
-        }
-
-        return false;
+        return is_file($rootPath . '/phpstan.neon')
+            || is_file($rootPath . '/phpstan.neon.dist');
     }
 }

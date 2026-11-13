@@ -1,39 +1,60 @@
-bytic QA Tools
-================================
+# bytic QA Tools
 
-Included in this package are:
-- PHPUnit
-- PHP-Invoker
-- DbUnit
-- PHPLOC
-- PHPCPD
-- PHP_Depend
-- PHPMD
-- PHP_CodeSniffer
-- Fabien Potencier/PHP Coding Standards Fixer
-- Sensiolabs/Security-Checker
-- Behat
+A Composer plugin that installs PHP quality-assurance tools and provides
+Composer commands for running them.
 
-# Installation
+## Included tools
 
-To use this package, add it as as "dev" dependency with this command:
+- PHPUnit and Mockery
+- PHP Depend and PHP Mess Detector
+- PHP-CS-Fixer
+- Composer Normalize and License Checker
+- PHPStan with PHPUnit and Mockery extensions
+- Psalm with PHPUnit and Mockery plugins
+- Roave Security Advisories
+
+The package requires PHP 8.3 or later. Composer selects the newest compatible
+tool versions for the PHP version used by your project.
+
+## Installation
 
 ```bash
-composer require bytic/phpqatools --dev
+composer require --dev bytic/phpqatools
 ```
 
-Or modify your composer.json as followed:
+Composer 2.2 and later requires explicit approval before loading plugins. If
+Composer does not prompt during installation, allow this plugin in your
+project's `composer.json`:
 
 ```json
-require-dev: {
-  "bytic/phpqatools": "*"
+{
+  "config": {
+    "allow-plugins": {
+      "bytic/phpqatools": true
+    }
+  }
 }
 ```
-   
-Inspiration
-----------------
-* https://github.com/jmolivas/phpqa
-* https://github.com/Dealerdirect/php-qa-tools
-* https://github.com/bearsunday/BEAR.QATools
-* https://github.com/lovullo/phpqatools
-* https://github.com/endroid/quality
+
+The plugin provides grouped commands such as `composer bytic:analyze`,
+`composer bytic:ci`, `composer bytic:fix`, and `composer bytic:test`.
+Individual tools can also be run through their provided Composer commands.
+
+## Development
+
+Run the package checks with:
+
+```bash
+composer test
+composer analyse
+```
+
+Continuous integration runs these checks on PHP 8.3, 8.4, and 8.5.
+
+## Inspiration
+
+- https://github.com/jmolivas/phpqa
+- https://github.com/Dealerdirect/php-qa-tools
+- https://github.com/bearsunday/BEAR.QATools
+- https://github.com/lovullo/phpqatools
+- https://github.com/endroid/quality
