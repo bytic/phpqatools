@@ -12,17 +12,10 @@ use Composer\Composer;
  */
 class Configuration
 {
-    private Composer $composer;
-    private string $commandPrefix;
-    private string $repositoryRoot;
-
     public function __construct(
-        Composer $composer,
-        string $commandPrefix,
-        string $repositoryRoot
+        private readonly Composer $composer,
+        private readonly string $commandPrefix,
+        private readonly string $repositoryRoot
     ) {
-        $this->composer = $composer;
-        $this->commandPrefix = $commandPrefix;
-        $this->repositoryRoot = $repositoryRoot;
     }
 }

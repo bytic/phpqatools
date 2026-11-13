@@ -9,13 +9,14 @@ use Bytic\Phpqa\PHPUnit\TestCase;
 use Composer\Console\Application;
 use Symfony\Component\Console\Tester\ApplicationTester;
 use Symfony\Component\Console\Tester\CommandTester;
+use Symfony\Component\Console\Output\OutputInterface;
 
 /**
  *
  */
 class IsNamespaceChildCommandTest extends TestCase
 {
-    public function test_doExecute()
+    public function test_doExecute(): void
     {
         $fixCommand = new FixCommand();
         $ciCommand = new CiCommand();
@@ -23,6 +24,12 @@ class IsNamespaceChildCommandTest extends TestCase
         $csFixerCommand = $this->mockery(CsFixerCommand::class)->shouldAllowMockingProtectedMethods()->makePartial();
         $csFixerCommand->shouldReceive('doExecuteProcess')
             ->twice()
+            ->withArgs(static function (array $command, string $cwd, OutputInterface $output): bool {
+                return in_array(array_slice($command, 1), [
+                    ['fix'],
+                    ['fix', '-v', '--dry-run', '--using-cache', 'no', '--diff'],
+                ], true);
+            })
             ->andReturn(0);
         $csFixerCommand->__construct();
 
@@ -35,12 +42,12 @@ class IsNamespaceChildCommandTest extends TestCase
         $commandTester = new CommandTester($fixCommand);
         $commandTester->execute([]);
         $output = $commandTester->getDisplay();
-        static::assertStringContainsString('bytic/phpqatools/vendor/bin/php-cs-fixer fix in', $output);
+        static::assertStringContainsString('vendor/bin/php-cs-fixer fix in', $output);
 
         $commandTester = new CommandTester($ciCommand);
         $commandTester->execute([]);
         $output = $commandTester->getDisplay();
-        static::assertStringContainsString('bytic/phpqatools/vendor/bin/php-cs-fixer fix -v --dry-run --using-cache no --diff', $output);
+        static::assertStringContainsString('vendor/bin/php-cs-fixer fix -v --dry-run --using-cache no --diff', $output);
     }
 
 }

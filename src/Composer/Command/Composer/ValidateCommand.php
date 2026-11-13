@@ -13,7 +13,7 @@ class ValidateCommand extends AbstractCommand
         return 'composer:validate';
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this->setAliasesWithPrefix(['ci:' . $this->getBaseName()]);

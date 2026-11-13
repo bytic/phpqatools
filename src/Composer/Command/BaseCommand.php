@@ -13,11 +13,25 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 abstract class BaseCommand extends ComposerBaseCommand
 {
-    public function __construct(string $name = null)
+    private ?string $namespaceContext = null;
+
+    public function __construct(?string $name = null)
     {
         $name = $name ?? $this->withPrefix($this->getBaseName());
 
         parent::__construct($name);
+    }
+
+    abstract public function getBaseName(): string;
+
+    public function setNamespaceContext(?string $namespace): void
+    {
+        $this->namespaceContext = $namespace;
+    }
+
+    public function getNamespaceContext(): ?string
+    {
+        return $this->namespaceContext;
     }
 
     final protected function execute(InputInterface $input, OutputInterface $output): int
