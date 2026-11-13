@@ -22,9 +22,34 @@ tool versions for the PHP version used by your project.
 composer require --dev bytic/phpqatools
 ```
 
+Composer 2.2 and later requires explicit approval before loading plugins. If
+Composer does not prompt during installation, allow this plugin in your
+project's `composer.json`:
+
+```json
+{
+  "config": {
+    "allow-plugins": {
+      "bytic/phpqatools": true
+    }
+  }
+}
+```
+
 The plugin provides grouped commands such as `composer bytic:analyze`,
 `composer bytic:ci`, `composer bytic:fix`, and `composer bytic:test`.
 Individual tools can also be run through their provided Composer commands.
+
+## Development
+
+Run the package checks with:
+
+```bash
+composer test
+composer analyse
+```
+
+Continuous integration runs these checks on PHP 8.3, 8.4, and 8.5.
 
 ## Inspiration
 
