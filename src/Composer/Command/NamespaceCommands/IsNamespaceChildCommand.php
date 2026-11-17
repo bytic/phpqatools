@@ -11,15 +11,10 @@ use Symfony\Component\Console\Input\InputInterface;
 trait IsNamespaceChildCommand
 {
 
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this->configureNamespaceCommandOption();
-    }
-
-    protected function populateInputWithNamespaceCommand(InputInterface $input)
-    {
-//        $input->setOption(self::FIX_ARGUMENT, true);
     }
 
     /**
@@ -27,9 +22,10 @@ trait IsNamespaceChildCommand
      * @param $namespace
      * @return bool
      */
-    protected function isRunFromNamespace(InputInterface $input, $namespace = null): bool
+    protected function isRunFromNamespace(InputInterface $input, string $namespace): bool
     {
-        return $input->getArgument('command') == $this->withPrefix($namespace);
+        return $this->getNamespaceContext() === $namespace
+            || $input->getArgument('command') == $this->withPrefix($namespace);
     }
 
     protected function configureNamespaceCommandOption()

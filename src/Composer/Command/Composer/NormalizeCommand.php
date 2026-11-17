@@ -30,7 +30,7 @@ class NormalizeCommand extends AbstractCommand
         return parent::doExecute($input, $output);
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
 

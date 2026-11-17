@@ -27,7 +27,7 @@ class CsFixerCommand extends ProcessCommand
         $args = ['fix'];
 
         if (false === $this->isRunFromNamespace($input, NamespaceCommand::FIX)) {
-            $args[] = '-v --dry-run --using-cache no --diff';
+            $args = array_merge($args, ['-v', '--dry-run', '--using-cache', 'no', '--diff']);
         }
 
         return array_merge(
@@ -38,7 +38,7 @@ class CsFixerCommand extends ProcessCommand
         );
     }
 
-    protected function configure()
+    protected function configure(): void
     {
         parent::configure();
         $this->configureNamespaceCommandOption();

@@ -12,6 +12,8 @@ use Symfony\Component\Console\Output\OutputInterface;
  */
 abstract class NamespaceCommand extends BaseCommand
 {
+    public const NAMESPACE_NAME = '';
+
     public const ANALYZE = 'analyze';
     public const CI = 'ci';
     public const FIX = 'fix';
@@ -34,7 +36,16 @@ abstract class NamespaceCommand extends BaseCommand
         $childCommands = $this->getChildCommands();
         foreach ($childCommands as $command) {
             $output->writeln(['', sprintf('<comment>Executing %s</comment>', (string)$command->getName())]);
-            $exitCode += $command->run($input, $output);
+            if ($command instanceof BaseCommand) {
+                $command->setNamespaceContext($this->getBaseName());
+            }
+            try {
+                $exitCode += $command->run($input, $output);
+            } finally {
+                if ($command instanceof BaseCommand) {
+                    $command->setNamespaceContext(null);
+                }
+            }
         }
         return $exitCode;
     }
